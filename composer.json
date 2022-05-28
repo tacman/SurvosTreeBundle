@@ -1,0 +1,29 @@
+{
+    "name": "survos/tree-bundle",
+    "description": "Integrates jstree in a Symfony application",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tac Tacelosky",
+            "email": "tacman@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "symfony/config": "^6.1",
+        "symfony/dependency-injection": "^6.1",
+        "symfony/http-kernel": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Survos\\TreeBundle\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.7",
+        "symfony/browser-kit": "^6.1",
+        "symfony/framework-bundle": "^6.1",
+        "symfony/phpunit-bridge": "^6.1"
+    }
+}
