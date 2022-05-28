@@ -1,22 +1,19 @@
 <?php
 
-namespace Survos\BarcodeBundle;
+namespace Tacman\HelloBundle;
 
-use Survos\BarcodeBundle\Twig\BarcodeTwigExtension;
+use Gedmo\Mapping\Annotation\Tree;
+use Tacman\HelloBundle\Twig\HelloExtension;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
-use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class SurvosBarcodeBundle extends AbstractBundle
+class TacmanHelloBundle extends AbstractBundle
 {
 
-    protected string $extensionAlias = 'barcode';
+    protected string $extensionAlias = 'tacman_tree';
 
     // $config is the bundle Configuration that you usually process in ExtensionInterface::load() but already merged and processed
     /**
@@ -24,12 +21,12 @@ class SurvosBarcodeBundle extends AbstractBundle
      */
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        $definition = $builder->autowire('survos.barcode_twig', BarcodeTwigExtension::class)
+        $definition = $builder->autowire('tacman.hello_twig', HelloExtension::class)
             ->addTag('twig.extension');
 
-        $definition->setArgument('$widthFactor', $config['widthFactor']);
-        $definition->setArgument('$height', $config['height']);
-        $definition->setArgument('$foregroundColor', $config['foregroundColor']);
+//        $definition->setArgument('$widthFactor', $config['widthFactor']);
+//        $definition->setArgument('$height', $config['height']);
+//        $definition->setArgument('$foregroundColor', $config['foregroundColor']);
     }
 
     public function configure(DefinitionConfigurator $definition): void
