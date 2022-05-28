@@ -2,38 +2,45 @@
 
 namespace Tacman\HelloBundle\Twig;
 
-use Picqer\Barcode\BarcodeGenerator;
-use Picqer\Barcode\BarcodeGeneratorSVG;
+use Twig\Environment;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
+use Symfony\WebpackEncoreBundle\Twig\StimulusTwigExtension;
 
 class HelloExtension extends AbstractExtension
 {
-    public function __construct()
+    public function __construct(private StimulusTwigExtension $stimulus)
     {
-
-    }
-    public function getFilters(): array
-    {
-        return [
-            // If your filter generates SAFE HTML, you should add a third
-            // parameter: ['is_safe' => ['html']]
-            // Reference: https://twig.symfony.com/doc/2.x/advanced.html#automatic-escaping
-            new TwigFilter('hello', [$this, 'hello'], ['is_safe' => ['html']]),
-        ];
     }
 
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('hello', [$this, 'hello'], ['is_safe' => ['html']]),
+            new TwigFunction('render_hello', [$this, 'renderHello'], ['needs_environment' => true, 'is_safe' => ['html']]),
         ];
     }
 
-    public function hello(string $value): string
+    public function renderHello(Environment $env, array $attributes = []): string
     {
-        // ...
-        return '@todo';
+
+        $controllers = [];
+        $controllers['@tacman/ux-hello/hello'] = $attributes;
+
+        $html = '<div '.$this->stimulus->renderStimulusController($env, $controllers).' ';
+//        foreach ($attributes as $name => $value) {
+//            if ('data-controller' === $name) {
+//                continue;
+//            }
+//
+//            if (true === $value) {
+//                $html .= $name.'="'.$name.'" ';
+//            } elseif (false !== $value) {
+//                $html .= $name.'="'.$value.'" ';
+//            }
+//        }
+
+        return trim($html).'></div>';
     }
+
 }

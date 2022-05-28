@@ -3,12 +3,17 @@
 namespace Tacman\HelloBundle;
 
 use Gedmo\Mapping\Annotation\Tree;
+use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Reference;
+use Symfony\UX\Chartjs\Twig\ChartExtension;
+use Symfony\WebpackEncoreBundle\Twig\StimulusTwigExtension;
 use Tacman\HelloBundle\Twig\HelloExtension;
 use Symfony\Component\Config\Definition\Configurator\DefinitionConfigurator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Twig\Environment;
 
 class TacmanHelloBundle extends AbstractBundle
 {
@@ -21,8 +26,17 @@ class TacmanHelloBundle extends AbstractBundle
      */
     public function loadExtension(array $config, ContainerConfigurator $container, ContainerBuilder $builder): void
     {
-        $definition = $builder->autowire('tacman.hello_twig', HelloExtension::class)
-            ->addTag('twig.extension');
+//        $definition = $builder->autowire('tacman.hello_twig', HelloExtension::class)
+//            ->addTag('twig.extension');
+
+        if (class_exists(Environment::class) && class_exists(StimulusTwigExtension::class)) {
+            $builder
+                ->setDefinition('tacman.hello_twig', new Definition(HelloExtension::class))
+                ->addArgument(new Reference('webpack_encore.twig_stimulus_extension'))
+                ->addTag('twig.extension')
+                ->setPublic(false)
+            ;
+        }
 
 //        $definition->setArgument('$widthFactor', $config['widthFactor']);
 //        $definition->setArgument('$height', $config['height']);

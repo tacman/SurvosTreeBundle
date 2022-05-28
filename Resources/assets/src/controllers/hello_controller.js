@@ -9,7 +9,8 @@ import Swal from 'sweetalert2'
 export default class extends Controller {
     static targets = ['msg']
     static values = {
-        title: String,
+        duration: {type: Number, default: 2000},
+        title: {type: String, default: 'Hola' }
     }
 
     connect() {
@@ -24,8 +25,8 @@ export default class extends Controller {
         Swal.fire({
             title: 'Auto close alert!',
             html:
-                'hello',
-            timer: 2000,
+                this.titleValue,
+            timer: this.durationValue,
             didOpen: () => {
                 const content = Swal.getHtmlContainer()
                 const $ = content.querySelector.bind(content)
