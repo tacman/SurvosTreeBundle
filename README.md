@@ -6,6 +6,20 @@ Symfony Bundle demonstrating twig/stimulus installation
 composer req tacman/hello-bundle
 ```
 
+## Complete Working Demo (without opening an editor)
+```bash
+symfony new HelloDemo --webapp && cd HelloDemo
+composer config repositories.tacman_hello '{"type": "vcs", "url": "git@github.com:tacman/TacmanHelloBundle.git"}'
+composer req tacman/hello-bundle
+yarn install --force
+yarn encore dev
+bin/console make:controller AppController
+sed -i "s|/app|/|" src/Controller/AppController.php 
+sed -i "s|<h1|{{ render_hello() }}<h1|" templates/app/index.html.twig
+symfony server:start
+```
+
+
 @todo: install recipe
 
 ```twig
