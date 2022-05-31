@@ -1,6 +1,8 @@
 {
     "name": "tacman/hello-bundle",
     "description": "Say hello, using twig and stimulus",
+    "keywords": ["symfony-ux", "symfony6"],
+
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
