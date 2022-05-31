@@ -14,6 +14,9 @@ composer req tacman/hello-bundle
 
 ```
 
+## Notes from Ryan
+
+https://symfonycasts.com/screencast/stimulus/controllers#comment-5423456875
 
 You have 2 options here - one is the more "automated" way that the actual UX packages work. And the second is a simpler, but more manual process, which is totally fine if you are the one installing the bundles into your app :).
 
