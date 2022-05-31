@@ -19,7 +19,6 @@ export default class extends Controller {
     }
 
     show() {
-        console.error('show()');
         let timerInterval
 
         Swal.fire({

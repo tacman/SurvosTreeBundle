@@ -25,7 +25,7 @@ class HelloExtension extends AbstractExtension
     {
 
         $controllers = [];
-        $controllers['@tacman/ux-hello/hello'] = $attributes;
+        $controllers['@tacman/hello-bundle/hello'] = $attributes;
 
         $html = '<div '.$this->stimulus->renderStimulusController($env, $controllers).' ';
 //        foreach ($attributes as $name => $value) {
