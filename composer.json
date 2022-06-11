@@ -16,7 +16,7 @@
         "symfony/config": "^6.1",
         "symfony/dependency-injection": "^6.1",
         "symfony/http-kernel": "^6.1",
-        "twig/twig": "^3.4"
+        "twig/twig": "^2 || ^3.4"
     },
     "autoload": {
         "psr-4": {
